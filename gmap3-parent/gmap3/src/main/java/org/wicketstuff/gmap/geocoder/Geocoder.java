@@ -53,17 +53,23 @@ public class Geocoder implements Serializable
     public static final String OUTPUT_JSON = "json";
     private final String output = OUTPUT_JSON;
     /**
-     * Result-Object of a gecoder request
+     * Result-Object of a geocoder request
      */
     private GeocoderResult geocoderResult;
     private ObjectMapper objectMapper;
+    private String apiKey = null;
 
 
     /**
      * <b>Default Constructor.</b><br/>
      * Create an {@link ObjectMapper}.<br/>
-     * The {@link ObjectMapper} ignore unknown properties when mapping from JSON to POJO.<br/>
+     * The {@link ObjectMapper} ignore unknown properties when mapping from JSON
+     * to POJO.<br/>
      * <b>Use</b> {@link #Geocoder(ObjectMapper)} to customize
+     *
+     * @deprecated since 22th June 2016 Google Maps requires an API-key,
+     * therefore you should use {@link #Geocoder(java.lang.String) } instead of
+     * this constructor
      */
     public Geocoder()
     {
@@ -71,15 +77,31 @@ public class Geocoder implements Serializable
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
 
+    public Geocoder(String apiKey)
+    {
+        this();
+        this.apiKey = apiKey;
+    }
+
     /**
      * <b>Configuration Constructor.</b><br/>
      * If you have to customize the default {@link ObjectMapper}
      * 
      * @see Geocoder#Geocoder()
+     *
+     * @deprecated since 22th June 2016 Google Maps requires an API-key,
+     * therefore you should use {@link #Geocoder(com.fasterxml.jackson.databind.ObjectMapper, java.lang.String)
+     * } instead of this constructor
      */
     public Geocoder(ObjectMapper mapper)
     {
         this.objectMapper = mapper;
+    }
+
+    public Geocoder(ObjectMapper mapper, String apiKey)
+    {
+        this(mapper);
+        this.apiKey = apiKey;
     }
 
     /**
@@ -88,7 +110,7 @@ public class Geocoder implements Serializable
      * all hits are available in {@link #geocoderResult}
      * 
      * @param response
-     *            - JSON respone from Google Geocoder Service
+     *            - JSON response from Google Geocoder Service
      * @return firstHit - First hit of {@link #geocoderResult}
      * @throws GeocoderException
      *             - When GeocoderStatus unequal to {@link GeocoderStatus#OK}
@@ -142,15 +164,20 @@ public class Geocoder implements Serializable
         StringBuilder sb = new StringBuilder("http://maps.googleapis.com/maps/api/geocode/");
         sb.append(output);
         sb.append("?");
+        if (apiKey != null)
+        {
+            sb.append("apiKey=");
+            sb.append(apiKey);
+            sb.append("&");
+        }
         sb.append("address=").append(urlEncode(address));
-        sb.append("&sensor=false");
         return sb.toString();
     }
 
     /**
      * Invoke a geocoder request to the GoogleMaps API.<br/>
      * Only return the first element of {@link #geocoderResult} to be backward compatible.<br/>
-     * After succeful call of {@link #geocode(String)} you can get all results from
+     * After successful call of {@link #geocode(String)} you can get all results from
      * {@link #geocoderResult}
      * 
      * @param address

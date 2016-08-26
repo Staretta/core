@@ -1,16 +1,16 @@
 package org.wicketstuff.select2;
 
-import junit.framework.TestCase;
 import org.apache.wicket.feedback.FeedbackMessage;
 import org.apache.wicket.util.tester.FormTester;
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Test;
 
 /**
  * @author lexx
  */
-public class Select2ChoiceTest extends TestCase
+public class Select2ChoiceTest
 {
 
 	private WicketTester wicketTester;
@@ -21,6 +21,7 @@ public class Select2ChoiceTest extends TestCase
 		this.wicketTester = new WicketTester();
 	}
 
+	@Test
 	public void testSelect2ChoiceRequireValue() throws Exception
 	{
 		Select2ChoicePage page = new Select2ChoicePage();
@@ -36,6 +37,7 @@ public class Select2ChoiceTest extends TestCase
 		Assert.assertEquals("Please, choose country", page.country.getFeedbackMessages().first().getMessage().toString());
 	}
 
+	@Test
 	public void testSelect2ChoiceOptionalValue() throws Exception
 	{
 		Select2ChoicePage page = new Select2ChoicePage();
@@ -51,6 +53,7 @@ public class Select2ChoiceTest extends TestCase
 		Assert.assertNull(page.country.getModelObject());
 	}
 
+	@Test
 	public void testSelect2ChoiceKeepsValueAfterFormValidation() throws Exception
 	{
 		Select2ChoicePage page = new Select2ChoicePage();
@@ -66,9 +69,10 @@ public class Select2ChoiceTest extends TestCase
 		Assert.assertFalse(page.city.isValid());
 
 		String responseAsString = this.wicketTester.getLastResponseAsString();
-		Assert.assertTrue(responseAsString.contains(expectedJavaScriptMethodCall()));
+		Assert.assertTrue(responseAsString.contains(expectedOption()));
 	}
 
+	@Test
 	public void testSelect2ChoiceKeepsValueAfterPageReRender() throws Exception
 	{
 		Select2ChoicePage page = new Select2ChoicePage();
@@ -81,9 +85,10 @@ public class Select2ChoiceTest extends TestCase
 
 		this.wicketTester.startPage(this.wicketTester.getLastRenderedPage());
 		String responseAsString = this.wicketTester.getLastResponseAsString();
-		Assert.assertTrue(responseAsString.contains(expectedJavaScriptMethodCall()));
+		Assert.assertTrue(responseAsString.contains(expectedOption()));
 	}
 
+	@Test
 	public void testSelect2ChoiceKeepsValueAfterFormSubmit() throws Exception
 	{
 		Select2ChoicePage page = new Select2ChoicePage();
@@ -100,7 +105,7 @@ public class Select2ChoiceTest extends TestCase
 		Assert.assertEquals(city(), page.city.getModelObject());
 
 		String responseAsString = this.wicketTester.getLastResponseAsString();
-		Assert.assertTrue(responseAsString.contains(expectedJavaScriptMethodCall()));
+		Assert.assertTrue(responseAsString.contains(expectedOption()));
 	}
 
 	private static String city()
@@ -113,9 +118,8 @@ public class Select2ChoiceTest extends TestCase
 		return Country.CA.name();
 	}
 
-	private static String expectedJavaScriptMethodCall()
+	private static String expectedOption()
 	{
-		return ".select2('data', {\"id\":\"CA\",\"text\":\"Canada\"});";
+		return "<option selected=\"selected\" value=\"CA\">Canada</option>";
 	}
-
 }

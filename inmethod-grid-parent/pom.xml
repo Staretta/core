@@ -1,12 +1,11 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
 		<groupId>org.wicketstuff</groupId>
 		<artifactId>wicketstuff-core</artifactId>
-		<version>7.0.0-SNAPSHOT</version>
+		<version>8.0.0-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>inmethod-grid-parent</artifactId>
@@ -57,7 +56,7 @@
 		<dependency>
 			<groupId>org.wicketstuff</groupId>
 			<artifactId>wicket15-tree</artifactId>
-			<version>7.0.0</version>
+			<version>7.1.0</version>
 		</dependency>
 
 		<!-- LOGGING DEPENDENCIES - LOG4J -->
@@ -79,7 +78,8 @@
 		<!-- JETTY DEPENDENCIES FOR TESTING -->
 		<dependency>
 			<groupId>org.eclipse.jetty.aggregate</groupId>
-			<artifactId>jetty-all-server</artifactId>
+			<artifactId>jetty-all</artifactId>
+            <classifier>uber</classifier>
 		</dependency>
 	</dependencies>
 

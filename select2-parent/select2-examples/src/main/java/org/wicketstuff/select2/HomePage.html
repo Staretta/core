@@ -12,7 +12,6 @@
 
 </head>
 <body>
-
 	<div class="container">
 		<div class="hero-unit">
 			<h1>wicketstuff-select2 Examples</h1>
@@ -25,17 +24,15 @@
 
 		<section>
 			<div class="page-header">
-				<h1>Single-Select <small>Ajax result loading. Paging with infinite scrolling. Minimum input length</small></h1>
+				<h1>Single-Select <small>Ajax result loading. Paging with infinite scrolling</small></h1>
 			</div>
 			<div class="row">
 				<div class="span12">
 					<p>
-						Country currently selected: <strong><span
-							wicket:id="country"></span> </strong>
+						Country currently selected: <strong><span wicket:id="country0"></span> </strong>
 					</p>
-					<form wicket:id="single">
-						<input wicket:id="country" type="hidden"
-							style="width: 300px;" />
+					<form wicket:id="single0">
+						<select wicket:id="country0" style="width: 300px;" ></select>
 						<div class="form-actions">
 							<button type="submit" class="btn">Submit</button>
 						</div>
@@ -45,17 +42,15 @@
 		</section>
 		<section>
 			<div class="page-header">
-				<h1>Multi-Select <small>Ajax result loading. Paging with infinite scrolling. Minimum input length. Drag &amp; Drop</small></h1>
+				<h1>Single-Select <small>Ajax result loading. Paging with infinite scrolling. Minimum input length</small></h1>
 			</div>
 			<div class="row">
 				<div class="span12">
 					<p>
-						Countries currently selected: <strong><span
-							wicket:id="countries"></span> </strong>
+						Country currently selected: <strong><span wicket:id="country"></span> </strong>
 					</p>
-					<form wicket:id="multi">
-						<input wicket:id="countries"
-							type="hidden" style="width: 300px;" />
+					<form wicket:id="single">
+						<select wicket:id="country" style="width: 300px;" ></select>
 						<div class="form-actions">
 							<button type="submit" class="btn">Submit</button>
 						</div>
@@ -63,6 +58,85 @@
 				</div>
 			</div>
 		</section>
+		<section>
+			<div class="page-header">
+				<h1>Multi-Select <small>Ajax result loading. Paging with infinite scrolling. Minimum input length</small></h1>
+			</div>
+			<div class="row">
+				<div class="span12">
+					<p>
+						Countries currently selected: <strong><span wicket:id="countries"></span> </strong>
+					</p>
+					<form wicket:id="multi">
+						<select wicket:id="countries" style="width: 300px;" ></select>
+						<div class="form-actions">
+							<button type="submit" class="btn">Submit</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</section>
+		<section>
+			<div class="page-header">
+				<h1>Multi-Select <small>Ajax result loading. Paging with infinite scrolling. Minimum input length. Ajax change</small></h1>
+			</div>
+			<div class="row">
+				<div class="span12">
+					<p>
+						Countries currently selected: <strong><span wicket:id="ajaxcountries"></span> </strong>
+					</p>
+					<form wicket:id="multiajax">
+						<select wicket:id="ajaxcountries" style="width: 300px;" ></select>
+					</form>
+				</div>
+			</div>
+		</section>
+		<section>
+			<div class="page-header">
+				<h1>Multi-Select <small>Ajax result loading. Paging with infinite scrolling. Minimum input length. Ajax change, no submit</small></h1>
+			</div>
+			<div class="row">
+				<div class="span12">
+					<p>
+						Countries in model: <strong><span wicket:id="ajaxcountriesnsm"></span> </strong><br/>
+						Countries currently selected: <strong><span wicket:id="ajaxcountriesns"></span> </strong>
+					</p>
+					<form wicket:id="multiajaxns">
+						<select wicket:id="ajaxcountriesns" style="width: 300px;" ></select>
+					</form>
+				</div>
+			</div>
+		</section>
+		<section>
+			<div class="page-header">
+				<h1>Multi-Select <small>Ajax result loading. Paging with infinite scrolling. Minimum input length. Close on select. Tags</small></h1>
+			</div>
+			<div class="row">
+				<div class="span12">
+					<p>
+						Tags currently selected: <strong><span wicket:id="tagsLabel"></span> </strong>
+					</p>
+					<form wicket:id="tagsForm">
+						<select wicket:id="tagsSelect" style="width: 300px;" ></select>
+						<div class="form-actions">
+							<button type="submit" class="btn">Submit</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</section>
+        <section>
+            <div class="page-header">
+                <h1>Stateless</h1>
+            </div>
+            <div class="row">
+                <div class="span12">
+                    <form wicket:id="stateless">
+                        <select wicket:id="statelessCountries" style="width: 300px;" ></select>
+                    </form>
+                </div>
+            </div>
+        </section>
 	</div>
 </body>
 </html>

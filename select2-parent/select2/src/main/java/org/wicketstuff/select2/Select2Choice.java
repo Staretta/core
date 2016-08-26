@@ -12,16 +12,14 @@
  */
 package org.wicketstuff.select2;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 
-import org.apache.wicket.ajax.json.JSONException;
-import org.apache.wicket.markup.head.IHeaderResponse;
-import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.util.convert.ConversionException;
 import org.apache.wicket.util.string.Strings;
-import org.wicketstuff.select2.json.JsonBuilder;
 
 /**
  * Single-select Select2 component. Should be attached to a {@code <input type='hidden'/>} element.
@@ -79,35 +77,19 @@ public class Select2Choice<T> extends AbstractSelect2Choice<T, T>
 		super(id, provider);
 	}
 
-	@Override
+    @Override
 	protected final T convertValue(String[] value) throws ConversionException
 	{
 		if (value != null && value.length > 0 && !Strings.isEmpty(value[0]))
 		{
-			Iterator<T> it = convertIdsToChoices(Collections.singletonList(value[0])).iterator();
+			List<String> ids = Collections.singletonList(value[0]);
+			Collection<T> choices = convertIdsToChoices(ids);
+			Iterator<T> it = choices.iterator();
 			return it.hasNext() ? it.next() : null;
 		}
 		else
 		{
 			return null;
 		}
-	}
-
-	@Override
-	protected void renderInitializationScript(IHeaderResponse response, T choice)
-	{
-		JsonBuilder selection = new JsonBuilder();
-		try
-		{
-			selection.object();
-			getProvider().toJson(choice, selection);
-			selection.endObject();
-		}
-		catch (JSONException e)
-		{
-			throw new RuntimeException("Error converting model object to Json", e);
-		}
-		response.render(OnDomReadyHeaderItem.forScript(JQuery.execute(
-			"$('#%s').select2('data', %s);", getJquerySafeMarkupId(), selection.toJson())));
 	}
 }

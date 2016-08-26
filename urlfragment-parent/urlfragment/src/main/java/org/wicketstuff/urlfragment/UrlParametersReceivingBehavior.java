@@ -42,7 +42,7 @@ import org.apache.wicket.request.resource.PackageResourceReference;
  */
 public abstract class UrlParametersReceivingBehavior extends AbstractDefaultAjaxBehavior
 {
-
+	private static final long serialVersionUID = 1L;
 	private final Component[] components;
 	private final Map<String, String> options;
 
@@ -150,7 +150,7 @@ public abstract class UrlParametersReceivingBehavior extends AbstractDefaultAjax
 	 * 
 	 * @param scope
 	 *            the scope of the {@link PackageResourceReference}
-	 * @return
+	 * @return {@link HeaderItem} for chaining
 	 */
 	protected static HeaderItem getJS(Class<?> scope)
 	{

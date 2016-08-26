@@ -1,12 +1,11 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
 		<groupId>org.wicketstuff</groupId>
 		<artifactId>datatables-parent</artifactId>
-		<version>7.0.0-SNAPSHOT</version>
+		<version>8.0.0-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>wicketstuff-datatables</artifactId>
@@ -23,14 +22,6 @@
 		</developer>
 	</developers>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>net.alchim31.maven</groupId>
-				<artifactId>yuicompressor-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
 	<dependencies>
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -41,13 +32,25 @@
 			<artifactId>wicket-extensions</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>net.sf.json-lib</groupId>
-			<artifactId>json-lib</artifactId>
-			<classifier>jdk15</classifier>
+			<groupId>de.agilecoders.wicket.webjars</groupId>
+			<artifactId>wicket-webjars</artifactId>
+			<version>0.5.3</version>
 		</dependency>
 		<dependency>
-			<groupId>org.testng</groupId>
-			<artifactId>testng</artifactId>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>datatables</artifactId>
+			<version>1.10.10</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>3.3.6</version>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>de.agilecoders.wicket</groupId>
+			<artifactId>jquery-selectors</artifactId>
+			<version>0.2.3</version>
 		</dependency>
 	</dependencies>
 </project>
